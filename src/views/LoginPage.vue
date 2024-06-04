@@ -15,13 +15,13 @@
                               <div class="label">
                                 <span class="label-text text-black text-lg"><i class="fa-solid fa-user mr-2"></i>ชื่อผู้ใช้</span>
                               </div>
-                              <input type="text" placeholder="Username" class="input input-bordered w-[700px] text-lg" />
+                              <input type="text" v-model="username" placeholder="Username" class="input input-bordered w-[700px] text-lg" required/>
                             </label>
                             <label class="form-control w-fit my-auto py-4">
                               <div class="label">
                                 <span class="label-text text-black text-lg"><i class="fa-solid fa-lock mr-2"></i>รหัสผ่าน</span>
                               </div>
-                                <input type="password" placeholder="Password" class="input input-bordered w-[700px] text-lg" />
+                                <input type="password" v-model="username" placeholder="Password" class="input input-bordered w-[700px] text-lg" required/>
                             </label>
                             <div id="button">
                               <button class="btn btn-primary w-[700px] text-lg mt-10"><i class="fa-solid fa-right-to-bracket"></i>เข้าสู่ระบบ</button>
@@ -44,7 +44,17 @@
 </template>
 
 <script>
-    
+import axios from 'axios';
+import swal from 'sweetalert2';
+    export default {
+        name: 'LoginPage',
+        data() {
+            return {
+                username: '',
+                password: ''
+            }
+        },
+    }
 </script>
 
 <style>
