@@ -7,7 +7,7 @@
             </div>
             <div>
                 <router-link to="/login" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4"><i class="fa-solid fa-right-to-bracket mr-2"></i>เข้าสู่ระบบ</router-link>
-                <router-link to="/register" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 "><i class="fa-solid fa-user-plus mr-2"></i>สมัครสมาชิก</router-link>
+                <!-- <router-link to="/register" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 "><i class="fa-solid fa-user-plus mr-2"></i>สมัครสมาชิก</router-link> -->
             </div>
         </div>
     </div>
