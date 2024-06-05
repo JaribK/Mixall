@@ -10,7 +10,7 @@
                 <div id="login" class="animate-fade-up animate-once animate-delay-200 animate-ease-in-out bg-white h-fit w-[800px] rounded-b-lg border border-slate-400 rounded-lg">
                     <div id="login-title" class="border-b-slate-600 w-[798.72px] flex justify-start items-center text-white bg-[#1d232a] rounded-t-lg h-[50px] text-lg"><i class="fa-solid fa-right-to-bracket ml-8 mr-2"></i>เข้าสู่ระบบ</div>
                     <div id="login-content" class="flex flex-col justify-center items-center py-4 w-full">
-                        <form action="">
+                        <form @submit.prevent="Login">
                             <label class="form-control w-fit my-auto pt-4">
                               <div class="label">
                                 <span class="label-text text-black text-lg"><i class="fa-solid fa-user mr-2"></i>ชื่อผู้ใช้</span>
@@ -21,7 +21,7 @@
                               <div class="label">
                                 <span class="label-text text-black text-lg"><i class="fa-solid fa-lock mr-2"></i>รหัสผ่าน</span>
                               </div>
-                                <input type="password" v-model="username" placeholder="Password" class="input input-bordered w-[700px] text-lg" required/>
+                                <input type="password" v-model="password" placeholder="Password" class="input input-bordered w-[700px] text-lg" required/>
                             </label>
                             <div id="button">
                               <button class="btn btn-primary w-[700px] text-lg mt-10"><i class="fa-solid fa-right-to-bracket"></i>เข้าสู่ระบบ</button>
@@ -46,6 +46,8 @@
 <script>
 import axios from 'axios';
 import swal from 'sweetalert2';
+import { mapActions } from 'vuex';
+import { LOGIN_ACTION } from '@/store/storeconstants';
     export default {
         name: 'LoginPage',
         data() {
@@ -54,6 +56,15 @@ import swal from 'sweetalert2';
                 password: ''
             }
         },
+        methods: {
+            ...mapActions('auth', {
+                login: LOGIN_ACTION
+            }),
+            async Login() {
+                await this.login({ username: this.username, password: this.password });
+                this.$router.push('/')
+            }
+        }
     }
 </script>
 

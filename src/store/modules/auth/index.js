@@ -6,7 +6,8 @@ export default {
     namespaced: true,
     state() {
         return {
-            user: [],
+            // 'id','username', 'email', 'is_logged_in', 'is_activated', 'last_login', 'date_joined'
+            user: null,
             token: null,
         };
     },

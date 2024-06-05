@@ -24,9 +24,9 @@
                           </thead>
                           <tbody>
                             <tr class="text-center text-black text-xl h-[50px]">
-                                <td class="border border-slate-300">John Doe</td>
-                                <td class="border border-slate-300">5</td>
-                                <td class="border border-slate-300">10</td>
+                                <td class="border border-slate-300">{{ getusernamemaxidinList }}</td>
+                                <td class="border border-slate-300">{{ countOnlineUsers }}</td>
+                                <td class="border border-slate-300">{{ countUsers }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -75,7 +75,44 @@
 </template>
 
 <script>
-    
+import axios from 'axios';
+    export default {
+        name: 'HomePage',
+        data() {
+            return {
+                usersList: []
+            }
+        },
+        computed: {
+            countUsers() {
+                return this.usersList.length;
+            },
+            countOnlineUsers() {
+                return this.usersList.filter(user => user.is_logged_in).length;
+            },
+            getusernamemaxidinList() {
+                const maxId = Math.max.apply(Math, this.usersList.map(function(o) { return o.id; }));
+                const user = this.usersList.find(user => user.id === maxId);
+                return user ? user.username : '';
+            },
+
+        },
+        mounted() {
+            this.getUsers();
+        },
+        methods: {
+            getUsers(){
+                axios.get('http://localhost:8000/users')
+                .then((response) => {
+                    this.usersList = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            },
+
+        }
+    }
 </script>
 
 <style>

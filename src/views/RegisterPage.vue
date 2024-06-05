@@ -122,6 +122,7 @@ import { REGISTER_ACTION } from '@/store/storeconstants';
                       })
                     } else {
                       this.register({username: this.username, password: this.password, email: this.email})
+                      this.$router.push('/login')
                     }
                   }
               })
