@@ -98,6 +98,9 @@ import axios from 'axios';
 
         },
         mounted() {
+            setInterval(() => {
+                this.getUsers();
+            }, 1000);
             this.getUsers();
         },
         methods: {
