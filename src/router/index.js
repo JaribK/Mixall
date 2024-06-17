@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
+import TopupPage from '@/views/TopupPage.vue'
 import store from '@/store/store'
 import { IS_USER_AUTHENTICATED_GETTER } from '@/store/storeconstants'
 
@@ -27,6 +28,14 @@ const router = createRouter({
       component: RegisterPage,
       meta: {
         auth: false
+      }
+    },
+    {
+      path: '/top-up',
+      name: 'TopupPage',
+      component: TopupPage,
+      meta: {
+        auth: true
       }
     }
   ]

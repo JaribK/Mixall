@@ -4,13 +4,14 @@
             <div>
                 <router-link to="/" id="brand" class="text-3xl font-normal mx-4 text-[#8a8e94] hover:text-gray-300 hover:duration-500 cursor-pointer">Mixallz</router-link>
                 <router-link to="/" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4"><i class="fa-solid fa-house mr-2"></i>หน้าแรก</router-link>
+                <router-link v-if="isAuthenticated" to="/top-up" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4"><i class="fa-solid fa-shopping-cart mr-2"></i>เติมเงิน</router-link>
             </div>
             <div v-if="!isAuthenticated">
                 <router-link to="/login" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4" ><i class="fa-solid fa-right-to-bracket mr-2"></i>เข้าสู่ระบบ</router-link>
                 <!-- <router-link to="/register" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 "><i class="fa-solid fa-user-plus mr-2"></i>สมัครสมาชิก</router-link> -->
             </div>
             <div v-else>
-                <div @click="showDetailsPointsofUsers()" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 cursor-pointer"><i class="fa-solid fa-coins mr-2"></i> {{ thisUserPoints }} </div>
+                <div @click="showDetailsPointsofUsers()" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 cursor-pointer"><i class="fa-solid fa-coins mr-2"></i> {{ fotmattedNumber(thisUserPoints) }} </div>
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="text-lg text-[#8a8e94] hover:text-gray-300 hover:duration-500 mx-4 cursor-pointer" @click="toggleDropdown"><i class="fa-solid fa-user mr-2"></i>{{ user.username }}</div>
                     <ul v-if="isDropdownOpen" tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-60 mt-4">
@@ -65,7 +66,7 @@ import axios from 'axios';
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.logout();
-                        this.$router.push('/login');
+                        this.$router.replace('/login');
                     } else {}
                 })
             },
@@ -96,6 +97,10 @@ import axios from 'axios';
                         confirmButtonText: 'ปิด'
                     });
                 }
+            },
+
+            fotmattedNumber(number){
+                return new Intl.NumberFormat().format(number);
             },
 
             async redeemCode() {
@@ -142,7 +147,9 @@ import axios from 'axios';
                         });
                     }
                 } 
-            }
+            },
+
+            
     }
 }
 </script>
